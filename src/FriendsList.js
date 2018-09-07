@@ -5,10 +5,11 @@ function FriendsList(props) {
     return (
         <ul>
             {
-                props.list.map((name) => (
-                    <li key={name}>
-                        <span>{name}</span>
-                        <button onClick={() => props.onRemoveFriend(name)}>Remove</button>
+                props.list.map((friend) => (
+
+                    <li key={friend.name}>
+                        <span>{friend.name}</span>
+                        <button onClick={() => props.onRemoveFriend(friend.name)}>Remove</button>
                     </li>
                 ))
             }

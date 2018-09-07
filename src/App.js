@@ -7,7 +7,21 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            friends: ['Awal', 'Tk', 'Fapo'],
+            friends: [
+                {
+                    name: 'Awal',
+                    status: true
+                },
+                {
+                    name: 'Tk',
+                    status: true
+                },
+                {
+                    name: 'Fapo',
+                    status: true
+
+                }
+            ],
             name: ''
         }
     }
@@ -15,8 +29,8 @@ class App extends React.Component {
     handleAddFriend = () => {
         this.setState((currentState) => {
             return {
-                friends: currentState.friends.concat(this.state.name),
-                name: ""
+                friends: currentState.friends.concat({name:this.state.name, status:true}),
+                name: "",
             }
         })
     }
@@ -35,14 +49,21 @@ class App extends React.Component {
         const inputName = target.name;
 
         this.setState({
-            [inputName]:value
-        })
+            [inputName]: value
+        });
+    }
+
+    clearInput = () => {
+        this.setState({
+            name: ''
+        });
     }
 
     render() {
         return (
             <div>
-                <AddFriend name={this.state.name} updateName={this.handleInput} onAddFriend={this.handleAddFriend}/>
+                <AddFriend name={this.state.name} updateName={this.handleInput} onAddFriend={this.handleAddFriend}
+                           clearInput={this.clearInput}/>
                 <FriendsList list={this.state.friends} onRemoveFriend={this.handleRemoveFriend}/>
             </div>
 
