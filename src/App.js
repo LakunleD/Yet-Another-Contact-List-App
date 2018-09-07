@@ -1,7 +1,7 @@
 import React from 'react';
 
-import FriendsList from './FriendsList';
-import AddFriend from './AddFriend';
+import FriendsList from './components/FriendsList';
+import AddFriend from './components/AddFriend';
 
 class App extends React.Component {
     constructor(props) {
