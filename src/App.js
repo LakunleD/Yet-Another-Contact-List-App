@@ -27,12 +27,14 @@ class App extends React.Component {
     }
 
     handleAddFriend = () => {
-        this.setState((currentState) => {
-            return {
-                friends: currentState.friends.concat({name: this.state.name, status: true}),
-                name: "",
-            }
-        })
+        if(this.state.name!== ''){
+            this.setState((currentState) => {
+                return {
+                    friends: currentState.friends.concat({name: this.state.name, status: true}),
+                    name: "",
+                }
+            })
+        }
     }
 
     handleRemoveFriend = (name) => {
