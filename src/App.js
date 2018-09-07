@@ -29,7 +29,7 @@ class App extends React.Component {
     handleAddFriend = () => {
         this.setState((currentState) => {
             return {
-                friends: currentState.friends.concat({name:this.state.name, status:true}),
+                friends: currentState.friends.concat({name: this.state.name, status: true}),
                 name: "",
             }
         })
@@ -59,12 +59,23 @@ class App extends React.Component {
         });
     }
 
+    handleToggleFriend = (name) => {
+        this.setState((currentState) => {
+            const friend = currentState.friends.find((friend) => friend.name === name);
+            return{
+                friends: currentState.friends.filter((friend) => friend.name !== name)
+                    .concat({name: name, status: !friend.status})
+            }
+        })
+    }
+
     render() {
         return (
             <div>
                 <AddFriend name={this.state.name} updateName={this.handleInput} onAddFriend={this.handleAddFriend}
                            clearInput={this.clearInput}/>
-                <FriendsList list={this.state.friends} onRemoveFriend={this.handleRemoveFriend}/>
+                <FriendsList list={this.state.friends} onRemoveFriend={this.handleRemoveFriend}
+                             toggleFriend={this.handleToggleFriend}/>
             </div>
 
         );

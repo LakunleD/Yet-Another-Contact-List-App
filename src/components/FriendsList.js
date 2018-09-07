@@ -1,19 +1,19 @@
 import React from 'react';
+import ActiveFriends from './ActiveFriends';
+import InActiveFriends from './InActiveFriends';
 
 
 function FriendsList(props) {
     return (
-        <ul>
-            {
-                props.list.map((friend) => (
+        <div>
+            <h1>Active Friends</h1>
+            <ActiveFriends list={props.list.filter((friend) => friend.status === true)}
+                           toggleFriend={props.toggleFriend} onRemoveFriend={props.onRemoveFriend}/>
 
-                    <li key={friend.name}>
-                        <span>{friend.name}</span>
-                        <button onClick={() => props.onRemoveFriend(friend.name)}>Remove</button>
-                    </li>
-                ))
-            }
-        </ul>
+            <h1>Inactive Friends</h1>
+            <InActiveFriends list={props.list.filter((friend) => friend.status === false)}
+                             toggleFriend={props.toggleFriend}/>
+        </div>
     )
 }
 
