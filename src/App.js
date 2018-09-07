@@ -1,19 +1,31 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-import FriendList from './FriendList';
+import FriendsList from './FriendsList';
 
-class App extends Component {
-    constructor(props){
+class App extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             friends: ['Awal', 'Tk', 'Fapo']
         }
+    }
+
+    handleAddFriend = () => {
+
+    }
+
+    handleRemoveFriend = (name) => {
+        this.setState((currentState) => {
+            return {
+                friends: currentState.friends.filter((friend) => friend !== name)
+            }
+        })
     }
 
     render() {
         return (
             <div>
-                <FriendList list={this.state.friends}/>
+                <FriendsList list={this.state.friends} onRemoveFriend={this.handleRemoveFriend}/>
             </div>
 
         );
